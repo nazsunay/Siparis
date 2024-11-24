@@ -1,0 +1,79 @@
+﻿@model Product
+
+@{
+    Layout = "_AdminLayout";
+}
+
+@section Styles {
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet">
+    <style>
+        .ql-container {
+            height: auto !important;
+        }
+    </style>
+}
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+    <script>
+        const quill = new Quill('#editor', { theme: 'snow' });
+
+        const form = document.querySelector('form');
+        form.addEventListener('formdata', (event) => {
+            event.formData.append(
+                quill.container.dataset.name,
+                quill.getSemanticHTML()
+            );
+        });
+    </script>
+}
+
+
+<h2 class="mb-4">Ürün Düzenle</h2>
+
+<form class="row g-3" method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label class="form-label">Ürün İsmi</label>
+        <input required type="text" value="@Model.Name" class="form-control" name="Name">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Ürün Açıklaması</label>
+        <input required type="text" value="@Model.Description" class="form-control" name="Description">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Ürün Fiyat Bilgisi</label>
+        <input required type="number" value="@Model.Price" class="form-control" name="Price">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Ürün Stok Bilgisi</label>
+        <input required type="number" value="@Model.Stock" class="form-control" name="Stock">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Tarih</label>
+        <input required type="datetime-local" value="@Model.DateCreated" class="form-control" name="DateCreated">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Ürün Açıklaması</label>
+        <input required type="text" value="@Model.Detail" class="form-control" name="Detail">
+    </div>
+    <div class="mb-3">
+        @* <label class="form-label">İçerik</label>
+        <div id="editor" data-name="detail">@Html.Raw(Model.Detail)</div> *@
+
+        <input type="image" src="/uploads/@Model.ImgUrl" name="Image" style="height:200px; width:400px" />
+
+        <input type="file" name="Image" @* multiple *@ accept="image/png, image/jpeg" />
+
+        <input type="hidden" name="ImgUrl" value="@Model.ImgUrl" />
+
+    </div>
+    <button class="btn-outline-primary">Güncelle</button>
+</form>
+
+
+
+
+
+
+
+

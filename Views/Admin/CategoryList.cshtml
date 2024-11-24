@@ -1,0 +1,33 @@
+﻿@model List<Category>
+@{
+    Layout = "_AdminLayout";
+}
+
+<h2>Kategori listesi</h2>
+<a href="/Admin/CategoryAdd" class="btn btn-success">Kategori Ekle</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col" width="40%">Kategori İsmi</th>
+            <th scope="col" width="20%">Kategori Detay</th>
+            
+            <th scope="col" width="20%">#</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var category in Model)
+        {
+            <tr>
+                <td>@category.CategoryName</td>
+                <td>@category.Description</td>
+                
+
+                <td>
+                    <a href="/admin/CategoryUpdate/@category.Id" class="btn btn-primary">Düzenle</a>
+                    <a href="/admin/CategoryDelete/@category.Id" onclick="return confirm('Emin misin?')" class="btn btn-danger">Sil</a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>

@@ -1,0 +1,27 @@
+﻿@model List<Sale>
+
+@{
+    Layout = "_AdminLayout";
+}
+<h2>Satış Raporu</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Ürün Adı</th>
+            <th>Satış Fiyatı</th>
+            <th>Miktar</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var sale in Model)
+        {
+            <tr>
+                <td>@sale.ProductName</td>
+                <td>@sale.Price.ToString("c")</td>
+                <td>@sale.Quantity</td>
+                
+            </tr>
+        }
+    </tbody>
+</table>

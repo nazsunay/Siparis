@@ -1,0 +1,13 @@
+﻿@model List<Product>
+
+<h2>Ürünler</h2>
+<ul>
+    @foreach (var product in Model)
+    {
+        <li>
+            <img src="/uploads/@product.ImgUrl" alt="@product.Name" width="100">
+            <span>@product.Name</span>
+            <span>@product.Price ₺</span>
+        </li>
+    }
+</ul>

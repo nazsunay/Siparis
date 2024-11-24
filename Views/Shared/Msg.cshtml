@@ -1,0 +1,13 @@
+﻿@{
+    Layout = "_LoginLayout";
+}
+
+
+<div class="alert @ViewBag.MessageCssClass" role="alert">
+    @ViewBag.Message
+
+    @if (ViewBag.Login != null)
+    {
+        <p>Giris yapmak icin <a href="@Url.Action("Index", "Login")">tiklayin</a></p>
+    }
+</div>

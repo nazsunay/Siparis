@@ -1,0 +1,15 @@
+﻿@model LoginModel
+@{
+    Layout = "_LoginLayout";
+}
+
+
+<form method="post">
+
+    <label for="Name">Kullanıcı Adı</label>
+    <p><input type="text" disabled value="@Model.Name" /><p>
+        <label for="Email">Email</label>
+    <p><input type="email" disabled value="@Model.Email" /><p>
+        <input type="hidden" value="@Model.Id" />
+        <a href="/Login/ConfirmAccount/@Model.Id" class="btn btn-primary">Onayla</a>
+</form>

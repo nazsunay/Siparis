@@ -1,0 +1,48 @@
+﻿@model Product
+
+<h2>Yorumlar</h2>
+<div class="comment-form">
+    <form asp-controller="Home" asp-action="AddComments" method="post" autocomplete="off">
+        <input type="text" required name="Comment" placeholder="Yorumunuzu yazın...">
+        <input type="hidden" name="PostId" value="@Model.Id" />
+        <button type="submit" class="btn-danger">Yorum Yap</button>
+    </form>
+</div>
+
+<div class="comments">
+    @foreach (var comment in ViewBag.Comments)
+    {
+        <div class="comment">
+            <div class="comment-header">
+               
+                @* <div class="comment-user-info">
+                    <a href="@Url.Action("Profile", "Home", new{Id = comment.UserId})" class="comment-account-name">@comment.Name</a>
+                    @* <span class="comment-account-name">@comment.Name</span> *@
+                   @*@ <span class="comment-user">@@@comment.UserName</span>
+                    <span class="comment-date">@comment.CommentDate</span>
+                </div> *@
+                <div class="comment-options">
+                    <button class="comment-options-btn" onclick="toggleOptionsMenu(this)">⋮</button>
+
+                    <div class="comment-options-menu">
+                        @if (Model.UserId == ViewBag.Control || comment.UserId == ViewBag.Control)
+                        {
+                            @if (comment.UserId == ViewBag.Control)
+                            {
+                                <a href="@Url.Action("EditComment", "Home", new { Id = comment.Id })">Düzenle</a>
+                            }
+                            <a href="@Url.Action("DeleteComment", "Home", new { Id = comment.Id })" onclick="return confirm('Silmek istediğinize emin misiniz?');">Sil</a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("ReportComment", "Home", new { Id = comment.Id })">Şikayet Et</a>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="comment-content">
+                <p>@comment.Comment</p>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,72 @@
+﻿@model Product
+<style>
+    .container {
+        padding: 20px;
+    }
+
+    .img-fluid {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .text-muted {
+        color: #6c757d;
+    }
+
+    .text-success {
+        color: #28a745;
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="header">
+        <h1>Ürün Detayları</h1>
+    </div>
+    @if (Model != null)
+    {
+        <div class="details">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="item">
+                        <label>Ürün Adı:</label>
+                        <p>@Model.Name</p>
+                    </div>
+                    <div class="item">
+                        <label>Ürün Model:</label>
+                        <p>@Model.Description</p>
+                    </div>
+                    <div class="item">
+                        <label>Açıklama:</label>
+                        <p>@Model.Detail</p>
+                    </div>
+                    <div class="item">
+                        <label>Fiyat:</label>
+                        <p>@Model.Price.ToString("C")</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <img src="/uploads/@Model.ImgUrl" class="card-img-top" alt="Ürün Resmi" class="img-fluid rounded" />
+                </div>
+            </div>
+
+           
+
+            <div class="sidebar mt-4">
+                <div class="action-buttons">
+
+                    <a href="/Basket/SatinAl/@Model.Id" class="btn btn-outline-primary">Sepete Ekle</a>
+                </div>
+            </div>
+        </div>
+
+        <br />
+        <br />
+        <br />
+
+        @Html.Partial("Partials/_Comment", Model)
+    }
+    else
+    {
+        <p>Üzgünüm, böyle bir ürün yok.</p>
+    }
+</div>
